@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoPic from './logoPic.png'; // import relative path from Logo.js
+import LogoPic from './LogoPic.png'; // import relative path from Logo.js
 
 function Logo() {
   return (
