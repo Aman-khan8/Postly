@@ -5,9 +5,7 @@ const config= {
   ProjectId: String(import.meta.env.VITE_APPWRITE_PROJECT_ID),
    DataBaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
     CollectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
-     BucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
-     ApiKey:String(import.meta.env.VITE_APPWRITE_API_KEY)
-
+     BucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID)
 }
 
 export default config
