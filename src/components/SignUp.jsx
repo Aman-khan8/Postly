@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from './logo';
+import Logo from './Logo';
 import Input from './Input';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
