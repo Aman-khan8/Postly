@@ -27,9 +27,9 @@ function NavButton() {
       }
     }
   return (
-    <div className="w-[90%] h-[100%] flex justify-center items-center text-white ">
+    <div className=" flex justify-center items-center text-white ">
       <button
-        className="w-[60%] h-[65%]  text-white bg-indigo-700 rounded-2xl p-1.5"
+        className="  text-white bg-indigo-700 rounded-2xl p-1.5"
         onClick={handleClick}
        
       >
