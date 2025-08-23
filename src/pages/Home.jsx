@@ -39,13 +39,13 @@ function Home() {
 
   return (
     <div className="min-h-full  w-full">
-      <div className="w-full flex justify-center items-center mt-10 text-3xl font-bold text-indigo-700">
+      <div className="w-full flex justify-center items-center mt-10 text-base sm:text-3xl font-bold text-indigo-700">
         <h1>Welcome home to your thoughts</h1>
       </div>
 
 
       <div className="relative w-full  mt-6 p-4 ">
-        <div className='text-2xl mb-5 w-full pl-10 font-bold text-indigo-700  '> <h3>Recent Posts</h3></div>
+        <div className='text-base sm:text-2xl mb-5 w-full pl-4 sm:pl-10 font-bold text-indigo-700  '> <h3>Recent Posts</h3></div>
   
         <div className="overflow-hidden ">
                <div className="absolute left-2 top-50 flex items-center z-10">
@@ -68,7 +68,7 @@ function Home() {
   </button>
 </div>
           <div
-            className="flex gap-6 transition-transform duration-500 ease-in-out"
+            className="flex gap-2 transition-transform duration-500"
             style={{ transform: `translateX(${translateX}px)` }}
           >
             {post.map((p) => {
@@ -91,7 +91,7 @@ function Home() {
 })}
           </div>
             <div className='w-[95%] h-[30vh] flex justify-end '>
-          <div className='w-[10%] mt-[10px] h-[20%]'> 
+          <div className='sm:ml-10 mt-[10px] '> 
           <Button children={'See All'} onClick={()=>{
             navigate('/allpost')
 
