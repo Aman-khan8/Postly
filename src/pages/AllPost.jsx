@@ -12,7 +12,7 @@ function Allpost() {
  const navigate=useNavigate();
 const [searchQuery, setSearchQuery] = useState("");
 const userStatus=useSelector((state)=>state.userCurrentState)
-
+const [searchStatus, setSearchStatus]=useState(false);
  useEffect(()=>{
    userdatabase.getPosts().then((posts)=>{
     if(posts){
@@ -22,7 +22,7 @@ const userStatus=useSelector((state)=>state.userCurrentState)
 
  },[])
 
- async function handleSearch() {
+   async function handleSearch() {
   if (!searchQuery.trim()) {
     const posts = await userdatabase.getPosts();
     if (posts) setpost(posts.documents);
@@ -38,11 +38,18 @@ const userStatus=useSelector((state)=>state.userCurrentState)
   }
 }
 
+
 useEffect(()=>{
-  if(searchQuery.trim()===''){
-    navigate('/allpost');
+  if(searchQuery.trim()===''&&searchStatus){
+    userdatabase.getPosts().then((posts)=>{
+    if(posts){
+        setpost(posts.documents)
+    }
+   })
+    navigate('/allpost')
+    
   }
-},[searchQuery,navigate])
+},[searchQuery])
 
 if(post.length==0){
 
@@ -69,17 +76,19 @@ if(post.length==0){
     <>
     <div className='min-h-full bg-white w-full  '>
       <div className='w-full mt-3 flex justify-center items-center '>
-        <div className='w-[45%] flex'>
+        <div className='sm:w-[45%] flex'>
           <Input
   placeholder="Search"
   type="text"
   className="rounded-l-2xl"
   value={searchQuery}
-  onChange={(e) => setSearchQuery(e.target.value)}
+  onChange={(e) => {setSearchQuery(e.target.value)
+    setSearchStatus(true);
+  }}
 />
 <button
   onClick={handleSearch}
-  className="w-[10%] bg-indigo-700 text-white rounded-r-2xl"
+  className="sm:p-2 p-1 bg-indigo-700 text-white rounded-r-2xl"
 >
   Search
 </button>
@@ -87,11 +96,11 @@ if(post.length==0){
         </div>
 
       </div>
-     <div className='flex flex-wrap w-full min-h-full gap-8 p-7 '>
+     <div className='flex flex-wrap w-full min-h-full ml-15 sm:ml-8 gap-8 p-7 '>
   {
 post.map((p)=>{
         return(
-        <div key={p.$id} className='w-[20%] h-full  '>
+        <div key={p.$id} className='sm:w-[20%] w-[50%] h-full flex-shrink-0  '>
             <BlogsCard title={p.title} $id={p.$id} featuredPic={p.Picture}/>
         </div>)
     })

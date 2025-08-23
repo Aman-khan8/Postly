@@ -17,7 +17,7 @@ function Button({
 
   return (
 <>
-<button className={` py-3 px-4 ${textColor} ${bgColor} ${className} rounded-2xl` }
+<button className={` py-3 px-4 ${textColor} ${bgColor} ${className} cursor-pointer rounded-2xl` }
 type={type}
 {...props}   >{children}</button>
 

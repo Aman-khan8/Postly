@@ -31,9 +31,9 @@ function LoginForm() {
         }
 
   return (
-  <div className='w-full h-[100vh] bg-white flex  justify-center items-center'>
+  <div className='w-full h-[100vh] flex justify-center items-center'>
 
-    <div className='w-[40%] h-[90%] bg-gray-200 flex justify-center items-center'>
+    <div className='sm:w-[40%] w-[80%] h-[90%] bg-gray-200 flex justify-center items-center'>
     <div className="flex flex-col items-center gap-y-2">
         <div className='w-[20%] h-[10%]'>
             <Logo/>
@@ -76,9 +76,9 @@ function LoginForm() {
             
             </Link>
         </p>
-             {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+             {error && <p className="text-red-600 text-xs sm:text-sm  mt-8 text-center">{error}</p>}
         <div className='w-[80%] h-[10%]'> 
-        <Button type='submit' children='LogIn' bgColor='bg-indigo-700' />
+        <Button type='submit' children='LogIn' bgColor='bg-indigo-700' className='w-full' />
         </div>
         </div>
         </form>

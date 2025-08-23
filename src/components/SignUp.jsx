@@ -14,9 +14,6 @@ function SignUpForm() {
   const dispatch = useDispatch();
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-
 
   async function UserSignUp(data) {
    
@@ -51,9 +48,9 @@ function SignUpForm() {
     <>
     
  <div className='w-full h-[100vh] bg-white flex justify-center items-center'>
-      <div className='w-[40%] h-[95%] bg-gray-200 flex justify-center items-center'>
+      <div className='sm:w-[40%] w-[80%] h-[95%] bg-gray-200 flex justify-center items-center'>
         <div className="flex flex-col items-center gap-y-2 w-full p-4">
-          <div className='w-[20%] h-[10%]'>
+          <div className='sm:w-[20%] sm:h-[10%] w-[50%]'>
             <Logo />
             
           </div>
@@ -61,7 +58,7 @@ function SignUpForm() {
            <form onSubmit={handleSubmit(UserSignUp)} 
             className='w-full flex flex-col items-center gap-y-4'>
 
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+         
 
            <Input
   label="Full Name"
@@ -112,10 +109,10 @@ function SignUpForm() {
                 Login
               </Link>
             </p>
-
+       {error && <p className="text-red-600 sm:text-sm text-xs text-center">{error}</p>}
               <div className='w-[80%] h-[30%]'>
               
-              <button type='Submit' className='bg-indigo-700 w-full h-full rounded-2xl p-2 text-white'>Sign UP</button>
+              <button type='Submit' className='bg-indigo-700 w-full h-full cursor-pointer rounded-2xl p-2 text-white'>Sign UP</button>
             </div>
 
             </form>

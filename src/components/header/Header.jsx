@@ -23,7 +23,7 @@ const navigate=useNavigate();
     <>
     <div className='min-w-full h-[10vh] bg-white shadow-md  sticky top-0 z-50 flex px-4 justify-between items-center '>
           
-        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 ">
+        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 cursor-pointer" onClick={()=>{navigate('/')}}>
             <Logo/>
           </div>
 
@@ -33,7 +33,7 @@ const navigate=useNavigate();
   return(
     <li key={item.name} className=''>
 
-      <button className={`sm:px-4 text-gray-700 hover:text-indigo-700 ${isActive?' text-indigo-700':null}`} onClick={()=>navigate(item.path)}>{item.name}</button>
+      <button className={`sm:px-4 text-gray-700 cursor-pointer hover:text-indigo-700 ${isActive?' text-indigo-700':null}`} onClick={()=>navigate(item.path)}>{item.name}</button>
     </li>
   )
 

@@ -47,7 +47,7 @@ function PostPage() {
   return post? (
            <>
             <div className="py-1 flex justify-center ">   
-            <div className='w-[150vh] min-h-full p-10 flex'>
+            <div className='w-[150vh] min-h-full sm:p-10 pt-10 flex'>
                 <div className='w-[50%]'> 
                 <div className="w-[80%] flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
@@ -57,9 +57,9 @@ function PostPage() {
                     />
                 </div>
                 {isAuthor && (
-                        <div className=" flex ml-[2vh] w-[100%]  gap-2" >
+                        <div className=" flex sm:ml-[5vh]  mr-[2vh] w-[100%]  gap-2" >
                             <Link to={`/editpost/${post.$id}`}
-                             className='w-[30%] h-[100%] bg-emerald-500 p-2 text-white flex justify-center items-center rounded-2xl'>
+                             className='py-3 px-5 bg-emerald-500  text-white flex justify-center items-center rounded-2xl'>
                             <div> 
                                 Edit
                                 </div>
@@ -76,11 +76,11 @@ function PostPage() {
                     )}
                     </div>
 
-                <div className='w-[80%] '> 
+                <div className='w-[100%] sm:w-[80%] '> 
                 <div className="w-full mb-6">
                     <h1 className="text-2xl font-bold">{post.title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="">
                     {parse(post.content?post.content:'')}
                     </div>
 

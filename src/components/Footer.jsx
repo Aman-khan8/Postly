@@ -21,7 +21,7 @@ function Footer() {
       </div>
          <div className="w-full h-full p-[2%] flex gap-x-8">
   
-  <div className="flex-1 text-xs sm:text-base text-gray-600 mt-[1.5%]">
+  <div className="flex-1 text-xs  text-gray-600 mt-[1.5%]">
     <h3 className="mb-6 font-semibold uppercase text-indigo-700  text-sm sm:text-xl">
       Company
     </h3>
@@ -42,7 +42,7 @@ function Footer() {
   </div>
 
   {/* Column 2 */}
-  <div className="flex-1 text-xs sm:text-base text-gray-600 mt-[1.5%]">
+  <div className="flex-1 text-xs text-gray-600 mt-[1.5%]">
     <h3 className="mb-6 font-semibold uppercase text-indigo-700  text-sm sm:text-xl">
       Support
     </h3>
@@ -55,7 +55,7 @@ function Footer() {
   </div>
 
   {/* Column 3 */}
-  <div className="flex-1 text-xs sm:text-base text-gray-600 mt-[1.5%]">
+  <div className="flex-1 text-xs text-gray-600 mt-[1.5%]">
     <h3 className="mb-6 font-semibold uppercase text-indigo-700 text-sm sm:text-xl">
       Legals
     </h3>

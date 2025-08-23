@@ -29,7 +29,7 @@ function NavButton() {
   return (
     <div className=" flex justify-center items-center text-white ">
       <button
-        className="  text-white bg-indigo-700 rounded-2xl p-1.5"
+        className="p-2.5 cursor-pointer text-white bg-indigo-700 rounded-2xl"
         onClick={handleClick}
        
       >

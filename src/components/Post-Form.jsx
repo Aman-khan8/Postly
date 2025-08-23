@@ -100,7 +100,7 @@ useEffect(() => {
     <div className='w-full min-h-full'> 
            <form onSubmit={handleSubmit(submit)}
            className='flex flex-wrap h-[90%]'>
-            <div className='w-2/3 px-2'>
+            <div className='w-[60%] px-2'>
 
             <div> 
             <Input 
@@ -126,17 +126,17 @@ useEffect(() => {
             }}
             />
             </div>
-            <RTE control={control} label="Content: " name='content'  />
+            
 
             </div>
             
 
-             <div className="w-1/3 px-2 h-full">
-            { post &&<p className='text-red-500'>You have to enter picture again</p>}
+             <div className="w-[40%] px-2 h-full">
+            { post &&<p className='text-red-500 sm:text-sm text-xs'>You have to enter picture again</p>}
                 <Input
                     label="Featured Image :"
                     type="file"
-                    className="mb-4 rounded-lg"
+                    className="mb-4 rounded-lg "
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
                 />
@@ -152,12 +152,15 @@ useEffect(() => {
             
                 }
                 
-                <div className='w-[20%] h-[5%]' > 
+                <div className='sm:w-[20%] ' > 
                 <Button type={imageFile && imageFile.length>0?"submit":'button'} bgColor={imageFile && imageFile.length>0?'bg-green-500':'bg-gray-500'} className="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
                 
                 </div>
+            </div>
+            <div className='w-[80%]'> 
+            <RTE control={control} label="Content: " name='content'  />
             </div>
             </form>   
             </div> 
