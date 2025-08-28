@@ -5,7 +5,7 @@ import userAuthenication from '../../appwriteservices/Auth';
 import { LogoutState } from '../../store/authSlice';
 
 
-function NavButton({bgColor='bg-indigo-700',textColor='text-white'}) {
+function NavButton({bgColor='bg-indigo-700',textColor='text-white' , w=''}) {
   const accountStatus = useSelector((state) => state.userCurrentState);
   const navigate = useNavigate();
   const dispatch=useDispatch();
@@ -29,7 +29,7 @@ function NavButton({bgColor='bg-indigo-700',textColor='text-white'}) {
   return (
     <div className=" flex justify-center items-center  ">
       <button
-        className={`p-2.5 cursor-pointer   rounded-2xl ${bgColor} ${textColor}`}
+        className={`p-2.5 cursor-pointer   rounded-2xl ${bgColor} ${textColor} ${w}`}
         onClick={handleClick}
        
       >

@@ -136,7 +136,7 @@ useEffect(() => {
                 <Input
                     label="Featured Image :"
                     type="file"
-                    className="mb-4 rounded-lg "
+                    className="mb-4 rounded-lg"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
                 />
@@ -145,21 +145,21 @@ useEffect(() => {
                         <img
                             src={userdatabase.getFilePreview(post.Picture? post.Picture:null)}
                             alt={post.title}
-                            className="rounded-lg w-[50%]"
+                            className="rounded-lg sm:w-[25%]"
                         />
                     </div>
                 )
             
                 }
                 
-                <div className='sm:w-[20%] ' > 
+                <div className='sm:w-[20%]  ' > 
                 <Button type={imageFile && imageFile.length>0?"submit":'button'} bgColor={imageFile && imageFile.length>0?'bg-green-500':'bg-gray-500'} className="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
                 
                 </div>
             </div>
-            <div className='w-[80%]'> 
+            <div className='w-[80%] sm:w-[60%]'> 
             <RTE control={control} label="Content: " name='content'  />
             </div>
             </form>   

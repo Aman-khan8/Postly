@@ -54,7 +54,7 @@ const navigate=useNavigate();
 </div>
 
 {isOpen && (
-  <div className="absolute top-[10vh] right-0 bg-white shadow-md flex flex-col space-y-3 w-1/3 p-4 z-40">
+  <div className="absolute top-[10vh] right-0 bg-white shadow-md flex flex-col space-y-3 w-[50%] p-4 z-40">
     {navItems.map((item) => {
       const isActive = location.pathname === item.path;
       return (
@@ -65,7 +65,7 @@ const navigate=useNavigate();
             }`}
             onClick={() => {
               navigate(item.path);
-              setOpen(false); // close after click
+              setOpen(false); 
             }}
           >
             {item.name}
@@ -75,7 +75,7 @@ const navigate=useNavigate();
     })}
 
     <div className=" w-full pt-4">
-      <NavButton />
+      <NavButton w='w-full' />
     </div>
   </div>
 )}
