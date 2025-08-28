@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../Logo'
+import { Menu,X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import NavButton from './NavButton'
+
+
 function Header() {
- 
+ const [isOpen,setOpen]=useState(false);
   const navItems=[{
     name:"Home",
    path:'/',
@@ -27,7 +30,7 @@ const navigate=useNavigate();
             <Logo/>
           </div>
 
-<div className='flex-1 text-base text-gray-700 gap-4 flex justify-center items-center list-none sm:text-base'>
+<div className='sm:flex hidden  text-base text-gray-700 gap-4 justify-center items-center list-none sm:text-base'>
  { navItems.map((item)=>{
   const isActive= location.pathname===item.path
   return(
@@ -40,13 +43,46 @@ const navigate=useNavigate();
  })}
  
 </div>
+     
 
-    <div className=''>
+    <div className='sm:flex hidden '>
       <NavButton/>
     
     </div>
+<div className='sm:hidden flex justify-center item center' onClick={()=>{setOpen(!isOpen)}}>
+  <p>{isOpen ?<X /> :<Menu/>}</p>
+</div>
 
+{isOpen && (
+  <div className="absolute top-[10vh] right-0 bg-white shadow-md flex flex-col space-y-3 w-1/3 p-4 z-40">
+    {navItems.map((item) => {
+      const isActive = location.pathname === item.path;
+      return (
+        <li key={item.name} className="list-none">
+          <button
+            className={`px-4 text-gray-700 cursor-pointer hover:text-indigo-700 ${
+              isActive ? "text-indigo-700 font-medium" : ""
+            }`}
+            onClick={() => {
+              navigate(item.path);
+              setOpen(false); // close after click
+            }}
+          >
+            {item.name}
+          </button>
+        </li>
+      );
+    })}
+
+    <div className=" w-full pt-4">
+      <NavButton />
     </div>
+  </div>
+)}
+    </div>
+
+ 
+
     
     </>
   )

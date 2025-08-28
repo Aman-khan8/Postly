@@ -4,6 +4,7 @@ import userdatabase from '../appwriteservices/databaseConfig'
 import { useNavigate } from 'react-router-dom'
 import Input from '../components/Input'
 import Loader from '../components/Spinner'
+import { Search } from 'lucide-react'
 import { useSelector } from 'react-redux'
 
 
@@ -76,7 +77,7 @@ if(post.length==0){
     <>
     <div className='min-h-full bg-white w-full  '>
       <div className='w-full mt-3 flex justify-center items-center '>
-        <div className='sm:w-[45%] flex'>
+        <div className='sm:w-[45%] w-[60%] flex'>
           <Input
   placeholder="Search"
   type="text"
@@ -88,19 +89,19 @@ if(post.length==0){
 />
 <button
   onClick={handleSearch}
-  className="sm:p-2 p-1 bg-indigo-700 text-white rounded-r-2xl"
+  className="sm:p-2 p-3 bg-indigo-700 text-white rounded-r-2xl"
 >
-  Search
+  <Search/>
 </button>
 
         </div>
 
       </div>
-     <div className='flex flex-wrap w-full min-h-full ml-15 sm:ml-8 gap-8 p-7 '>
+     <div className='flex flex-wrap w-full min-h-full ml-7 sm:ml-8 gap-8 p-7 '>
   {
 post.map((p)=>{
         return(
-        <div key={p.$id} className='sm:w-[20%] w-[50%] h-full flex-shrink-0  '>
+        <div key={p.$id} className='sm:w-[20%] w-[80%] h-full flex-shrink-0  '>
             <BlogsCard title={p.title} $id={p.$id} featuredPic={p.Picture}/>
         </div>)
     })
