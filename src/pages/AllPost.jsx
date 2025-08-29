@@ -58,7 +58,7 @@ if(post.length==0){
     <div className=' w-full flex justify-center'> 
      <div className='w-[45%] flex justify-center mt-2'>
             <Input  placeholder={'Search'} type={'text'} className='rounded-l-2xl'/>
-            <button className='w-[10%] bg-indigo-700 text-white rounded-r-2xl '>Search</button>
+ <button className=' px-2 bg-indigo-700 flex justify-center items-center text-white rounded-r-2xl'> <Search/></button>
         </div>
         </div>
         <div className=' w-full h-[60vh] bg-white flex justify-center items-center'>
@@ -76,8 +76,8 @@ if(post.length==0){
   return userStatus?(
     <>
     <div className='min-h-full bg-white w-full  '>
-      <div className='w-full mt-3 flex justify-center items-center '>
-        <div className='sm:w-[45%] w-[60%] flex'>
+      <div className='w-full mt-3  flex justify-center items-center '>
+        <div className='sm:w-[40%] w-[60%] flex' >
           <Input
   placeholder="Search"
   type="text"
@@ -87,26 +87,20 @@ if(post.length==0){
     setSearchStatus(true);
   }}
 />
-<button
-  onClick={handleSearch}
-  className="sm:p-2 p-3 bg-indigo-700 text-white rounded-r-2xl"
->
-  <Search/>
-</button>
 
+ <button className=' sm:px-4
+  px-2 bg-indigo-700 flex justify-center items-center text-white rounded-r-2xl'  onClick={handleSearch} > <Search/></button>
         </div>
 
       </div>
-     <div className='flex flex-wrap w-full min-h-full ml-7 sm:ml-8 gap-8 p-7 '>
-  {
-post.map((p)=>{
-        return(
-        <div key={p.$id} className='sm:w-[20%] w-[80%] h-full flex-shrink-0  '>
-            <BlogsCard title={p.title} $id={p.$id} featuredPic={p.Picture}/>
-        </div>)
-    })
-  }     
-     </div>
+    <div className="flex flex-wrap mt-4
+     sm:ml-3 w-full min-h-full gap-8 px-7 overflow-x-hidden">
+  {post.map((p) => (
+    <div key={p.$id} className="sm:w-[20%] w-full h-full">
+      <BlogsCard title={p.title} $id={p.$id} featuredPic={p.Picture} />
+    </div>
+  ))}
+</div>
     </div>
     </>
     
