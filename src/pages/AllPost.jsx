@@ -93,9 +93,9 @@ if(post.length==0){
         </div>
 
       </div>
-    <div className="flex flex-wrap mt-4
+    <div className="flex flex-wrap mt-4 sm:mb-10 mb-14 
      sm:ml-3 w-full min-h-full gap-8 px-7 overflow-x-hidden">
-  {post.map((p) => (
+  {[...post].reverse().map((p) => (
     <div key={p.$id} className="sm:w-[20%] w-full h-full">
       <BlogsCard title={p.title} $id={p.$id} featuredPic={p.Picture} />
     </div>

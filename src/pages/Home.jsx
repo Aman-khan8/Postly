@@ -78,7 +78,7 @@ function Home() {
             className="flex gap-2 transition-transform duration-500"
             style={{ transform: `translateX(${translateX}px)` }}
           >
-            {post.map((p) => (
+            {[...post].reverse().map((p) => (
               <div key={p.$id} className="flex-shrink-0 w-[250px]">
                 <BlogsCard
                   title={p.title}
