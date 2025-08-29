@@ -48,21 +48,22 @@ function SignUpForm() {
     <>
     
  <div className='w-full h-[100vh] bg-white flex justify-center items-center'>
-      <div className='sm:w-[40%] w-[80%] h-[95%] bg-gray-200 flex justify-center items-center'>
-        <div className="flex flex-col items-center gap-y-2 w-full p-4">
+      <div className='sm:w-[40%] w-[90%] h-[95%] bg-gray-200 flex justify-center items-center'>
+        <div className="flex flex-col items-center sm:gap-y-2 gap-y-5 w-full p-4">
           <div className='sm:w-[20%] sm:h-[10%] w-[50%]'>
             <Logo />
             
           </div>
           <h2 className='text-center text-2xl font-bold leading-tight mb-4'>Create your Account</h2>
            <form onSubmit={handleSubmit(UserSignUp)} 
-            className='w-full flex flex-col items-center gap-y-4'>
+            className='w-full flex flex-col items-center sm:gap-y-2 gap-y-5'>
 
          
 
            <Input
   label="Full Name"
   type="text"
+   className='rounded-lg'
   placeholder="Enter your Full Name"
   {...register("fullName", { required: "Full name is required" })}
 />
@@ -74,6 +75,7 @@ function SignUpForm() {
   label="Email"
   type="email"
   placeholder="Enter your Email"
+   className='rounded-lg'
   {...register("email", { 
     required: "Email is required",
     pattern: {
@@ -89,6 +91,7 @@ function SignUpForm() {
 <Input
   label="Password"
   type="password"
+   className='rounded-lg'
   placeholder="Enter your Password"
   {...register("password", { 
     required: "Password is required",

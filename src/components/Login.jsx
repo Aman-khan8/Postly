@@ -33,8 +33,8 @@ function LoginForm() {
   return (
   <div className='w-full h-[100vh] flex justify-center items-center'>
 
-    <div className='sm:w-[40%] w-[80%] h-[90%] bg-gray-200 flex justify-center items-center'>
-    <div className="flex flex-col items-center gap-y-2">
+    <div className='sm:w-[40%] w-[90%] h-[90%] bg-gray-200 flex justify-center items-center'>
+    <div className="flex flex-col items-center sm:gap-y-2 gap-y-5">
         <div className='w-[20%] h-[10%]'>
             <Logo/>
         </div>
@@ -43,7 +43,7 @@ function LoginForm() {
             
         </div>
         <form onSubmit={handleSubmit(UserLogIn)} className='w-[100%] flex justify-center items-center'>
-            <div className='flex flex-col items-center w-[100%] gap-y-2'> 
+            <div className='flex flex-col items-center w-[100%] sm:gap-y-2 gap-y-5'> 
         <Input label="Email"
         type="email"
         placeholder="Enter your Email"
