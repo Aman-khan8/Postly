@@ -23,207 +23,164 @@ function SignUpForm() {
 
   const password = watch("password", "");
 
-  // Password rules
-  const hasMinLength = password.length >= 8;
-  const hasUpperCase = /[A-Z]/.test(password);
-  const hasLowerCase = /[a-z]/.test(password);
-  const hasNumber = /\d/.test(password);
-  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-  const isPasswordValid =
-    hasMinLength &&
-    hasUpperCase &&
-    hasLowerCase &&
-    hasNumber &&
-    hasSpecialChar;
+  const isValid =
+    password.length >= 8 &&
+    /[A-Z]/.test(password) &&
+    /[a-z]/.test(password) &&
+    /\d/.test(password) &&
+    /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
   async function UserSignUp(data) {
-    try {
-      // MOCK LOGIN (No ENV / API dependency)
-      const mockUser = {
+    dispatch(
+      LoginState({
         id: Date.now(),
         name: data.fullName,
         email: data.email
-      };
+      })
+    );
 
-      dispatch(LoginState(mockUser));
-
-      console.log("User signed up:", data);
-
-      navigate("/");
-    } catch (err) {
-      setError(err.message || "Something went wrong");
-    }
+    navigate("/");
   }
 
   return (
-    <div className="w-full h-[100vh] bg-white flex justify-center items-center">
-      <div className="sm:w-[40%] w-[90%] h-[95%] bg-gray-200 flex justify-center items-center">
-        <div className="flex flex-col items-center sm:gap-y-2 gap-y-5 w-full p-4">
+    <div className="w-full h-screen flex justify-center items-center bg-white">
+      <div className="w-[90%] sm:w-[40%] bg-gray-200 p-6 rounded-lg shadow-md flex flex-col items-center">
 
-          <div className="sm:w-[20%] sm:h-[10%] w-[50%]">
-            <Logo />
-          </div>
+        <Logo />
+        <h2 className="text-xl font-bold mt-3 mb-5">
+          Create Account
+        </h2>
 
-          <h2 className="text-center text-2xl font-bold leading-tight mb-4">
-            Create your Account
-          </h2>
+        <form
+          onSubmit={handleSubmit(UserSignUp)}
+          className="w-full flex flex-col gap-4"
+        >
 
-          <form
-            onSubmit={handleSubmit(UserSignUp)}
-            className="w-full flex flex-col items-center sm:gap-y-2 gap-y-5"
-          >
-            {/* FULL NAME */}
+          {/* FULL NAME */}
+          <div>
             <Input
               label="Full Name"
               type="text"
-              placeholder="Enter your Full Name"
-              className="rounded-lg"
+              placeholder="Enter full name"
               {...register("fullName", {
                 required: "Full name is required"
               })}
             />
             {errors.fullName && (
-              <p className="text-red-600 text-sm">
+              <p className="text-red-600 text-xs mt-1">
                 {errors.fullName.message}
               </p>
             )}
+          </div>
 
-            {/* EMAIL */}
+          {/* EMAIL */}
+          <div>
             <Input
               label="Email"
               type="email"
-              placeholder="Enter your Email"
-              className="rounded-lg"
+              placeholder="Enter email"
               {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-                  message: "Invalid email format"
-                }
+                required: "Email is required"
               })}
             />
             {errors.email && (
-              <p className="text-red-600 text-sm">
+              <p className="text-red-600 text-xs mt-1">
                 {errors.email.message}
               </p>
             )}
+          </div>
 
-            {/* PASSWORD */}
-            <div className="w-full flex flex-col items-center">
-              <Input
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your Password"
-                className="rounded-lg"
-                {...register("password", {
-                  required: "Password is required",
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/,
-                    message:
-                      "Must be 8+ chars, upper, lower, number, special char"
-                  }
-                })}
-              />
+          {/* PASSWORD */}
+          <div className="relative">
+            <Input
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              {...register("password", {
+                required: "Password is required"
+              })}
+            />
 
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-blue-600 text-sm"
-              >
-                {showPassword ? "Hide Password" : "Show Password"}
-              </button>
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-9 text-xs text-blue-600 cursor-pointer"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </span>
 
-              {errors.password && (
-                <p className="text-red-600 text-sm">
-                  {errors.password.message}
-                </p>
-              )}
-
-              {/* PASSWORD CHECKLIST */}
-              <div className="text-sm mt-2 self-start">
-                <p className={hasMinLength ? "text-green-600" : "text-red-600"}>
-                  {hasMinLength ? "✅" : "❌"} At least 8 characters
-                </p>
-                <p className={hasUpperCase ? "text-green-600" : "text-red-600"}>
-                  {hasUpperCase ? "✅" : "❌"} One uppercase letter
-                </p>
-                <p className={hasLowerCase ? "text-green-600" : "text-red-600"}>
-                  {hasLowerCase ? "✅" : "❌"} One lowercase letter
-                </p>
-                <p className={hasNumber ? "text-green-600" : "text-red-600"}>
-                  {hasNumber ? "✅" : "❌"} One number
-                </p>
-                <p className={hasSpecialChar ? "text-green-600" : "text-red-600"}>
-                  {hasSpecialChar ? "✅" : "❌"} One special character
-                </p>
-              </div>
-            </div>
-
-            {/* CONFIRM PASSWORD */}
-            <div className="w-full flex flex-col items-center">
-              <Input
-                label="Confirm Password"
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                className="rounded-lg"
-                {...register("confirmPassword", {
-                  required: "Confirm password is required",
-                  validate: (value) =>
-                    value === password || "Passwords do not match"
-                })}
-              />
-
-              <button
-                type="button"
-                onClick={() =>
-                  setShowConfirmPassword(!showConfirmPassword)
-                }
-                className="text-blue-600 text-sm"
-              >
-                {showConfirmPassword
-                  ? "Hide Password"
-                  : "Show Password"}
-              </button>
-
-              {errors.confirmPassword && (
-                <p className="text-red-600 text-sm">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
-            </div>
-
-            {/* LOGIN LINK */}
-            <p>
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="text-blue-600 hover:underline"
-              >
-                Login
-              </Link>
-            </p>
-
-            {/* ERROR */}
-            {error && (
-              <p className="text-red-600 text-sm text-center">
-                {error}
+            {errors.password && (
+              <p className="text-red-600 text-xs mt-1">
+                {errors.password.message}
               </p>
             )}
 
-            {/* SUBMIT */}
-            <div className="w-[80%] h-[30%]">
-              <button
-                type="submit"
-                disabled={!isPasswordValid}
-                className="bg-indigo-700 w-full h-full cursor-pointer rounded-2xl p-2 text-white disabled:bg-gray-400"
-              >
-                Sign Up
-              </button>
+            {/* CHECKLIST */}
+            <div className="text-xs mt-2 space-y-1">
+              <p className={password.length >= 8 ? "text-green-600" : "text-red-600"}>
+                • 8+ characters
+              </p>
+              <p className={/[A-Z]/.test(password) ? "text-green-600" : "text-red-600"}>
+                • One uppercase
+              </p>
+              <p className={/[a-z]/.test(password) ? "text-green-600" : "text-red-600"}>
+                • One lowercase
+              </p>
+              <p className={/\d/.test(password) ? "text-green-600" : "text-red-600"}>
+                • One number
+              </p>
+              <p className={/[!@#$%^&*(),.?":{}|<>]/.test(password) ? "text-green-600" : "text-red-600"}>
+                • One special character
+              </p>
             </div>
-          </form>
-        </div>
+          </div>
+
+          {/* CONFIRM PASSWORD */}
+          <div className="relative">
+            <Input
+              label="Confirm Password"
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm password"
+              {...register("confirmPassword", {
+                required: "Confirm password is required",
+                validate: (val) =>
+                  val === password || "Passwords do not match"
+              })}
+            />
+
+            <span
+              onClick={() =>
+                setShowConfirmPassword(!showConfirmPassword)
+              }
+              className="absolute right-3 top-9 text-xs text-blue-600 cursor-pointer"
+            >
+              {showConfirmPassword ? "Hide" : "Show"}
+            </span>
+
+            {errors.confirmPassword && (
+              <p className="text-red-600 text-xs mt-1">
+                {errors.confirmPassword.message}
+              </p>
+            )}
+          </div>
+
+          {/* LOGIN LINK */}
+          <p className="text-sm text-center">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-600">
+              Login
+            </Link>
+          </p>
+
+          {/* SUBMIT */}
+          <button
+            type="submit"
+            disabled={!isValid}
+            className="bg-indigo-600 text-white py-2 rounded-lg disabled:bg-gray-400"
+          >
+            Sign Up
+          </button>
+
+        </form>
       </div>
     </div>
   );
